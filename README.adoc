@@ -1,5 +1,24 @@
 = ACF Helper
 
+== Installation
+
+[source,zsh]
+----
+composer require devidw/acf-helper
+----
+
+
+== Usage
+
 [source,php]
 ----
+<?php
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Devidw\ACF\Helper\Field\Field;
+
+$name = Field::setKey('field_xxxxx')::setUserId(2458)::getName();
+
+var_dump($name);
 ----
