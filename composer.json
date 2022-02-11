@@ -1,0 +1,15 @@
+{
+    "name": "devidw/acf-helper",
+    "autoload": {
+        "psr-4": {
+            "Devidw\\ACF\\Helper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "David Wolf",
+            "email": "david@wolf.gdn"
+        }
+    ],
+    "require": {}
+}
