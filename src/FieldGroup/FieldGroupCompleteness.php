@@ -1,10 +1,10 @@
 <?php
 
-namespace Devidw\ACF\Helper\FieldGroup;
+namespace Devidw\ACF\FieldGroup;
 
-use Devidw\ACF\Helper\FieldGroup\FieldGroup;
-use Devidw\ACF\Helper\Field\Field;
-use Devidw\ACF\Helper\Field\FieldVisibility;
+use Devidw\ACF\FieldGroup\FieldGroup;
+use Devidw\ACF\Field\Field;
+use Devidw\ACF\Field\FieldVisibility;
 
 /**
  * Completeness class
@@ -12,11 +12,11 @@ use Devidw\ACF\Helper\Field\FieldVisibility;
 class FieldGroupCompleteness extends FieldGroup
 {
     /**
-     * Get the completness of a ACF field group.
+     * Get the completeness of a ACF field group.
      * 
      * @param string $fieldGroupKey The field group key.
      * 
-     * @return int The completness of the field group.
+     * @return int The completeness of the field group.
      */
     public static function getCompleteness()
     {
@@ -28,7 +28,7 @@ class FieldGroupCompleteness extends FieldGroup
 
             $field = Field::setKey($fieldKey)::setContextId(static::$contextId);
 
-            // Filter out fields that are just layout fields and not actual fields to include in the completness calculation.
+            // Filter out fields that are just layout fields and not actual fields to include in the completeness calculation.
             if (in_array($field::get('type'), ['tab', 'group'])) {
                 continue;
             }

@@ -2,7 +2,7 @@
     "name": "devidw/acf-helper",
     "autoload": {
         "psr-4": {
-            "Devidw\\ACF\\Helper\\": "src/"
+            "Devidw\\ACF\\": "src/"
         }
     },
     "authors": [

@@ -1,6 +1,6 @@
 <?php
 
-namespace Devidw\ACF\Helper;
+namespace Devidw\ACF;
 
 /**
  * Meta class for both fields and field groups.
@@ -42,7 +42,7 @@ abstract class Meta
      * 
      * @return static
      */
-    public static function setKey(string $key): self
+    public static function setKey(string $key): static
     {
         static::$key = $key;
 
@@ -56,7 +56,7 @@ abstract class Meta
      * 
      * @return static
      */
-    public static function setPostId(int $postId): self
+    public static function setPostId(int $postId): static
     {
         static::$contextId = static::$postId = $postId;
 
@@ -70,7 +70,7 @@ abstract class Meta
      * 
      * @return static
      */
-    public static function setUserId(int $userId): self
+    public static function setUserId(int $userId): static
     {
         static::$userId = $userId;
 
@@ -86,7 +86,7 @@ abstract class Meta
      * 
      * @return static
      */
-    public static function setContextId(string $contextId): self
+    public static function setContextId(string $contextId): static
     {
         static::$contextId = $contextId;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Devidw\ACF\Helper\FieldGroup;
+namespace Devidw\ACF\FieldGroup;
 
-use Devidw\ACF\Helper\Meta;
-use Devidw\ACF\Helper\Field\FieldVisibility;
+use Devidw\ACF\Meta;
+use Devidw\ACF\Field\FieldVisibility;
 
 /**
  * Field Group class

@@ -1,8 +1,8 @@
 <?php
 
-namespace Devidw\ACF\Helper\Field;
+namespace Devidw\ACF\Field;
 
-use Devidw\ACF\Helper\Meta;
+use Devidw\ACF\Meta;
 
 /**
  * Field class

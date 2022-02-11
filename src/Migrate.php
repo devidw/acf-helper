@@ -1,24 +1,27 @@
 <?php
 
-namespace Devidw\ACF\Helper;
+namespace Devidw\ACF;
 
-use Devidw\ACF\Helper\Query;
+use Devidw\ACF\Query;
 
 
 /**
- * Class Migrate
+ * Class to migrate ACF field data.
  * 
  * @since 1.0.0
  */
 class Migrate
 {
     /**
+     * Add layout names of flexible content fields to their meta key names.
+     * 
      * Add the layout names of flexible content entries to the ACF field name stored as `meta_key` in the database.
      * 
      * @since 1.0.0
      * 
      * @param string $parentMetaKey
      * @param string $childMetaKey
+     * 
      * @return bool
      */
     public function renameWithFlexbileContentLayout(string $parentMetaKey, string $childMetaKey)
@@ -52,10 +55,10 @@ class Migrate
         // return $users;
 
         foreach ($users as $user) {
-            dd($user->ID, 0);
+            // dd($user->ID, 0);
 
             $flexibleContentLayoutMapping = get_user_meta($user->ID, $parentMetaKey, true);
-            dd($flexibleContentLayoutMapping, 0);
+            // dd($flexibleContentLayoutMapping, 0);
 
             if (!$flexibleContentLayoutMapping) {
                 continue;
@@ -85,7 +88,7 @@ class Migrate
                     continue;
                 }
 
-                dd($matches[1], 0);
+                // dd($matches[1], 0);
                 $layoutIndex = (int) $matches[1];
 
                 $layoutName = $flexibleContentLayoutMapping[$layoutIndex];
@@ -110,7 +113,7 @@ class Migrate
                         'user_id' => $user->ID,
                     ]
                 );
-                dd("Update {$oldMetaKey} to {$newMetaKey} for user {$user->ID}: {$success}", 0);
+                // dd("Update {$oldMetaKey} to {$newMetaKey} for user {$user->ID}: {$success}", 0);
 
                 $wpdb->update(
                     $wpdb->prefix . 'usermeta',
@@ -122,7 +125,7 @@ class Migrate
                         'user_id' => $user->ID,
                     ]
                 );
-                dd("Update _{$oldMetaKey} to _{$newMetaKey} for user {$user->ID}: {$success}", 0);
+                // dd("Update _{$oldMetaKey} to _{$newMetaKey} for user {$user->ID}: {$success}", 0);
             }
         }
     }

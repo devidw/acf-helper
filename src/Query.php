@@ -1,22 +1,27 @@
 <?php
 
-namespace Devidw\ACF\Helper;
+namespace Devidw\ACF;
 
 /**
- * Class Query
+ * Query class for database interaction in WordPress
  * 
  * @since 1.0.0
  */
 class Query
 {
     /**
+     * Filter WordPress user queries
+     * 
+     * Used to replace placeholders in meta queries (*_$_*) for dynamic ACF field names with LIKE instead of = expressions.
+     * 
      * @since 1.0.0
      * 
-     * @param string $metaKey
-     * @param string $metaKey
+     * @param string $metaKeyDollar The meta key with a dollar sign as placholder, as used in WordPress meta queries.
+     * @param string $metaKeyRegexp Meta key in regular expression format.
+     * 
      * @return void
      */
-    public static function filterUserQuery(string $metaKeyDollar, string $metaKeyRegexp)
+    public static function filterUserQuery(string $metaKeyDollar, string $metaKeyRegexp): void
     {
         add_filter('pre_user_query', function (\WP_User_Query $query) use ($metaKeyDollar, $metaKeyRegexp): \WP_User_Query {
             $query->query_where = str_replace(
@@ -31,7 +36,7 @@ class Query
     /**
      * Get users with a given flexible content custom field value and layout.
      * 
-     * @author Levi Cole (https://wordpress.stackexchange.com/users/37896/levi-cole)
+     * @author Levi Cole
      * 
      * @since 1.0.0
      * 
@@ -40,7 +45,7 @@ class Query
      * @param string $field The flexible content field name.
      * @param string $layout The flexible layout name.
      * @param string $subfield The name of the layouts sub field.
-     * @param string $subfield_value The value of the layouts sub field.
+     * @param string $subfieldValue The value of the layouts sub field.
      *
      * @return array
      */
@@ -48,7 +53,7 @@ class Query
         string $field,
         string $layout,
         string $subfield,
-        string $subfield_value
+        string $subfieldValue
     ): array {
         global $wpdb;
 
@@ -109,7 +114,7 @@ class Query
                     $user_sql = <<<USERQUERY
                         SELECT COUNT(*) FROM $wpdb->usermeta 
                         WHERE `meta_key` = '$meta_key'
-                        AND `meta_value` = '$subfield_value'
+                        AND `meta_value` = '$subfieldValue'
                         AND `user_id` = $user_id
                     USERQUERY;
 
@@ -124,12 +129,6 @@ class Query
                 }
             }
         }
-
-        // if (!empty($users)) {
-        //     $users = get_users(['include' => $users]);
-        //     return $users;
-        //     // dd($users);
-        // }
 
         return $users;
     }

@@ -1,8 +1,8 @@
 <?php
 
-namespace Devidw\ACF\Helper\Field;
+namespace Devidw\ACF\Field;
 
-use Devidw\ACF\Helper\Field\Field;
+use Devidw\ACF\Field\Field;
 
 /**
  * Field Visibility class

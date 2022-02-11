@@ -8,7 +8,11 @@ composer require devidw/acf-helper
 ----
 
 
-== Usage
+== Usage Examples
+
+=== Get full field name
+
+Gets the full field name of a field. Fields nested in fields like repeater, group or flexible content fields will also be returned as full field names.
 
 [source,php]
 ----
@@ -16,9 +20,14 @@ composer require devidw/acf-helper
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-use Devidw\ACF\Helper\Field\Field;
+use Devidw\ACF\Field\Field;
 
 $name = Field::setKey('field_xxxxx')::setUserId(2458)::getName();
 
 var_dump($name);
 ----
+
+
+== Documentation
+
+Documentation is available at 
