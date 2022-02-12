@@ -1,6 +1,15 @@
 = ACF Helper
 
+A set of PHP classes and methods to assist with ACF. Enables a straight forward way of working with ACF fields by providing a simple, clean and self deescribing intererface.
+
+All methods are static and can be called directly from the class name from anywhere in the code.
+
+The libary adds functionality to get the visibility state of a field and also provides a way to get the completeness amount of all fields in a field group based on the visibility state and the amount of filled fields by the user.
+
+
 == Installation
+
+Install the libary using Composer:
 
 [source,zsh]
 ----
@@ -8,11 +17,58 @@ composer require devidw/acf-helper
 ----
 
 
+== Comparison
+
+|===
+| ACF Helper | ACF
+
+a|
+[source,php]
+----
+Field::setKey('field_xxxxx')::get();
+----
+
+a|
+[source,php]
+----
+get_field_object('field_xxxxx');
+----
+
+a|
+[source,php]
+----
+Field::setKey('field_xxxxx')::get('label');
+----
+
+a|
+[source,php]
+----
+get_field_object('field_xxxxx')['label'];
+----
+
+a|
+[source,php]
+----
+Field::setKey('field_xxxxx')::setUserId(2458)::getValue();
+----
+
+a|
+[source,php]
+----
+get_field('field_xxxxx', 'user_2458');
+----
+|===
+
+
 == Usage Examples
 
-=== Get full field name
+=== Get _full_ field name
 
 Gets the full field name of a field. Fields nested in fields like repeater, group or flexible content fields will also be returned as full field names.
+
+With ACF you can only get the direct name of a field. This method allows you to get the full field name.
+
+Let's say you have a group of `test_group_field` and a sub field of `test_sub_field` in the group. Using the `getName()` method you can get the full field name of the sub field: `test_group_field_test_sub_field`.
 
 [source,php]
 ----
@@ -22,12 +78,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use Devidw\ACF\Field\Field;
 
-$name = Field::setKey('field_xxxxx')::setUserId(2458)::getName();
+$fieldName = Field::setKey('field_xxxxx')::getName();
 
-var_dump($name);
+dump($fieldName);
 ----
+
+Credits to https://wordpress.stackexchange.com/users/13418/adam[Adam] for the https://wordpress.stackexchange.com/a/401663/218274[StackOverflow answer].
+
 
 
 == Documentation
 
-Documentation is available at 
+Documentation is available at https://devidw.github.io/acf-helper/api/

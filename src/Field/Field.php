@@ -25,22 +25,28 @@ class Field extends Meta
     {
         static::$field = acf_maybe_get_field(static::$key);
 
-        if (!is_null($key) && isset(static::$field[$key])) {
-            return static::$field[$key];
+        if (!is_null($key)) {
+            if (isset(static::$field[$key])) {
+                return static::$field[$key];
+            } else {
+                return null;
+            }
         }
 
         return static::$field;
     }
 
     /**
+     * Get the field value.
+     * 
+     * @author Adam
+     * 
      * @see https://wordpress.stackexchange.com/a/401663/218274
      * 
      * @return string
      */
     public static function getName()
     {
-        $key = static::$key;
-
         $field = static::get();
 
         if (empty($field) || !isset($field['parent'], $field['name'])) {
@@ -73,6 +79,8 @@ class Field extends Meta
     {
         if (static::hasParent()) {
 
+            // dump('has parent');
+
             $parentField = acf_maybe_get_field(static::get('parent'));
 
             // When the field's parent is a repeater or flexible content field, we have to get the sub field.
@@ -83,9 +91,14 @@ class Field extends Meta
             // Groups suck, you can't get the value of a group field by its key with `get_field` and `get_sub_field`
             elseif (in_array($parentField['type'], ['group'])) {
 
+                // dump($parentField);
+
                 return get_field(static::getName(), static::$contextId);
             }
         } else {
+
+            // dump('no parent');
+
             return get_field(static::$key, static::$contextId);
         }
     }
@@ -97,7 +110,8 @@ class Field extends Meta
      */
     public static function hasParent(): bool
     {
-        return isset(static::get()['parent']) && strpos(static::get()['parent'], 'field_') !== false;
+        return !is_null(static::get('parent')) && str_starts_with(static::get('parent'), 'field_');
+        // return !is_null(static::get('parent'));
     }
 
 

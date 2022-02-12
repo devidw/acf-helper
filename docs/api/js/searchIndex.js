@@ -13,7 +13,7 @@ Search.appendIndex(
         },                {
             "fqsen": "\\Devidw\\ACF\\Field\\Field\u003A\u003AgetName\u0028\u0029",
             "name": "getName",
-            "summary": "",
+            "summary": "Get\u0020the\u0020field\u0020value.",
             "url": "classes/Devidw-ACF-Field-Field.html#method_getName"
         },                {
             "fqsen": "\\Devidw\\ACF\\Field\\Field\u003A\u003AgetValue\u0028\u0029",

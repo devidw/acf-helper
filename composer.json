@@ -11,5 +11,7 @@
             "email": "david@wolf.gdn"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "symfony/var-dumper": "^6.0"
+    }
 }
