@@ -39,7 +39,7 @@ class FieldGroupCompleteness extends FieldGroup
         }
 
         $nonEmptyFields = array_filter($userValues, function ($value) {
-            return $value !== '';
+            return $value !== '' && $value !== false;
         });
 
         if (count($nonEmptyFields) === 0 || count($userValues) === 0) {
