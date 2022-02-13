@@ -42,6 +42,10 @@ class FieldGroupCompleteness extends FieldGroup
             return $value !== '';
         });
 
+        if (count($nonEmptyFields) === 0 || count($userValues) === 0) {
+            return 0;
+        }
+
         return count($nonEmptyFields) / count($userValues);
     }
 }
