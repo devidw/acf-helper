@@ -1,6 +1,6 @@
 = ACF Helper
 
-A set of PHP classes and methods to assist with ACF. Enables a straight forward way of working with ACF fields by providing a simple, clean and self deescribing intererface.
+A set of PHP classes and methods to assist with ACF. Enables a straight forward way of working with ACF fields by providing a simple, clean and self describing intererface.
 
 All methods are static and can be called directly from the class name from anywhere in the code.
 
