@@ -4,7 +4,6 @@ namespace Devidw\ACF\FieldGroup;
 
 use Devidw\ACF\FieldGroup\FieldGroup;
 use Devidw\ACF\Field\Field;
-use Devidw\ACF\Field\FieldVisibility;
 
 /**
  * Completeness class
@@ -39,7 +38,8 @@ class FieldGroupCompleteness extends FieldGroup
         }
 
         $nonEmptyFields = array_filter($userValues, function ($value) {
-            return !empty($value);
+            // `false` is a return value of the ACF true/false field, so we have to handle it as a field with a value and not as a field without a value.
+            return $value !== '' && $value !== null;
         });
 
         if (count($nonEmptyFields) === 0 || count($userValues) === 0) {
